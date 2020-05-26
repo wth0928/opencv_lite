@@ -1,0 +1,61 @@
+cc_defaults {
+	name: "opencv_lite_defaults",
+	header_libs: [
+		"opencv_headers",
+	],
+	cflags: [
+		"-Wall",
+		"-Werror",
+		"-Wextra",
+		"-Wno-unused-parameter",
+	],
+	shared_libs: [
+		"liblog",
+		"libcutils",
+		"libutils",
+	],
+}
+
+cc_library_shared {
+	name: "libopencv_lite",
+	rtti: true,
+	vendor_available: true,
+	vndk: {
+		enabled: true,
+ 	},
+	defaults: ["opencv_lite_defaults"],
+	srcs: [
+		"core/src/*.cpp",
+		"core/src/utils/*.cpp",
+		"imgproc/src/*.cpp",
+		"imgcodecs/src/*.cpp",
+		"gapi/src/*.cpp",
+	],
+	include_dirs: [
+		"external/opencv-4.3.0/modules/core/include",
+		"external/opencv-4.3.0/modules/imgproc/include",	
+		"external/opencv-4.3.0/modules/imgcodecs/include",	
+		"external/opencv-4.3.0/modules/gapi/include",	
+	],
+	shared_libs: [
+		"liblog",
+		"libcutils",
+		"libutils",
+		"zlib",
+	],
+	cflags: [
+		"-D__OPENCV_BUILD",
+		"-D__AVX__",
+		"-Wno-deprecated-declarations",
+		"-Wno-extern-c-compat",
+		"-Wno-ignored-attributes",
+		"-Wno-invalid-partial-specialization",
+		"-Wno-mismatched-tags",
+		"-Wno-sign-compare",
+		"-Wno-unused-lambda-capture",
+	],
+	cppflags: [
+		"-fexceptions",
+	],
+	stl: "libc++_static",
+}

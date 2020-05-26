@@ -1,0 +1,17 @@
+cc_library_headers {
+    name: "opencv_headers",
+    export_include_dirs: [
+		"include",
+		"build/android/modules/core",
+		"build/android/modules/imgproc",
+		"3rdparty/zlib",
+		"3rdparty/include/opencl/1.2",
+		"3rdparty/zlib/include",
+	],
+    vendor_available: true,
+}
+
+subdirs = [
+	"modules/core",
+	"modules/imgproc",
+]
